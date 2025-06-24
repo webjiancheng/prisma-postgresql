@@ -19,7 +19,6 @@ const eslintConfig = [
       "no-debugger": "warn",
       "prefer-const": "warn",
       "eqeqeq": ["error", "always"],
-      "curly": "warn",
     },
   },
 ];
