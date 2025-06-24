@@ -8,7 +8,7 @@ export async function GET() {
       orderBy: { createdAt: 'desc' },
     })
     return NextResponse.json(lists)
-  } catch (error) {
+  } catch (_) {
     return NextResponse.json({ error: 'Failed to fetch lists' }, { status: 500 })
   }
 }
@@ -31,7 +31,7 @@ export async function POST(req: Request) {
     })
 
     return NextResponse.json(list, { status: 201 })
-  } catch (error) {
+  } catch (_) {
     return NextResponse.json({ error: 'Failed to create list' }, { status: 500 })
   }
 }
