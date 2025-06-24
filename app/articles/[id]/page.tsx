@@ -1,12 +1,10 @@
 import { prisma } from '@/lib/prisma';
 
-interface Props {
-  params: {
-    id: string;
-  };
-}
-
-export default async function ArticleDetailPage({ params }: Props) {
+export default async function ArticleDetailPage({
+  params,
+}: {
+  params: { id: string };
+}) {
   const id = Number(params.id);
   if (isNaN(id)) {
     return <div>无效的文章 ID</div>;
