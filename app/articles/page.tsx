@@ -16,7 +16,6 @@ export default function ArticleListPage() {
     fetch("/api/articles")
       .then((res) => res.json())
       .then((data) => {
-        console.log("获取到的文章列表:", data);
         setArticles(data);
       });
   }, []);
