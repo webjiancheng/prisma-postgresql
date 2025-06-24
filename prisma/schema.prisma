@@ -1,0 +1,48 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  name      String?
+  password  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  List      List[]
+}
+
+model List {
+  id          Int        @id @default(autoincrement())
+  title       String
+  description String?
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  userId      Int
+  User        User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  ListItem    ListItem[]
+}
+
+model ListItem {
+  id          Int       @id @default(autoincrement())
+  content     String
+  isCompleted Boolean   @default(false)
+  dueDate     DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  listId      Int
+  List        List      @relation(fields: [listId], references: [id], onDelete: Cascade)
+}
+
+model Article {
+  id          Int      @id @default(autoincrement())
+  title       String
+  content     String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
